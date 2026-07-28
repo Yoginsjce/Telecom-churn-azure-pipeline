@@ -1,0 +1,190 @@
+{
+    "name": "Telecom_E2E_Pipeline",
+    "properties": {
+        "activities": [
+            {
+                "name": "Bronze_ADL_Usage",
+                "type": "DatabricksNotebook",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebookPath": "/Users/sujinc2363@gmail.com/Telecom_E2E_Pipeline/ADL Data retrivel"
+                },
+                "linkedServiceName": {
+                    "referenceName": "AzureDatabricks_Telecom",
+                    "type": "LinkedServiceReference"
+                }
+            },
+            {
+                "name": "NeonDB_Profiles",
+                "type": "DatabricksNotebook",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebookPath": "/Users/sujinc2363@gmail.com/Telecom_E2E_Pipeline/Neon_postgres_data"
+                },
+                "linkedServiceName": {
+                    "referenceName": "AzureDatabricks_Telecom",
+                    "type": "LinkedServiceReference"
+                }
+            },
+            {
+                "name": "Web_API_Weather",
+                "type": "DatabricksNotebook",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebookPath": "/Users/sujinc2363@gmail.com/Telecom_E2E_Pipeline/Weather API"
+                },
+                "linkedServiceName": {
+                    "referenceName": "AzureDatabricks_Telecom",
+                    "type": "LinkedServiceReference"
+                }
+            },
+            {
+                "name": "Silver_Usage_Cleaning",
+                "type": "DatabricksNotebook",
+                "dependsOn": [
+                    {
+                        "activity": "Bronze_ADL_Usage",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebookPath": "/Users/sujinc2363@gmail.com/Telecom_E2E_Pipeline/Silver_Usage_Cleaning"
+                },
+                "linkedServiceName": {
+                    "referenceName": "AzureDatabricks_Telecom",
+                    "type": "LinkedServiceReference"
+                }
+            },
+            {
+                "name": "Silver_Profile_Cleaning",
+                "type": "DatabricksNotebook",
+                "dependsOn": [
+                    {
+                        "activity": "NeonDB_Profiles",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebookPath": "/Users/sujinc2363@gmail.com/Telecom_E2E_Pipeline/Silver_Customer_Cleaning"
+                },
+                "linkedServiceName": {
+                    "referenceName": "AzureDatabricks_Telecom",
+                    "type": "LinkedServiceReference"
+                }
+            },
+            {
+                "name": "Gold_Churn_Detection",
+                "type": "DatabricksNotebook",
+                "dependsOn": [
+                    {
+                        "activity": "Web_API_Weather",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "Silver_Usage_Cleaning",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "Silver_Profile_Cleaning",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebookPath": "/Users/sujinc2363@gmail.com/Telecom_E2E_Pipeline/Gold_Churn_Detection"
+                },
+                "linkedServiceName": {
+                    "referenceName": "AzureDatabricks_Telecom",
+                    "type": "LinkedServiceReference"
+                }
+            },
+            {
+                "name": "STAR_SCHEMA_MODEL",
+                "type": "DatabricksNotebook",
+                "dependsOn": [
+                    {
+                        "activity": "Gold_Churn_Detection",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebookPath": "/Users/sujinc2363@gmail.com/Telecom_E2E_Pipeline/STAR_SCHEMA_DATA_MODEL"
+                },
+                "linkedServiceName": {
+                    "referenceName": "AzureDatabricks_Telecom",
+                    "type": "LinkedServiceReference"
+                }
+            }
+        ],
+        "annotations": [],
+        "lastPublishTime": "2026-07-27T14:21:39Z"
+    },
+    "type": "Microsoft.DataFactory/factories/pipelines"
+}
