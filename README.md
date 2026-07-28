@@ -29,7 +29,8 @@ prioritized action list.
 
 
 
-https://github.com/user-attachments/assets/7f2a0dc2-385d-4db1-90b2-069719d8d144
+<img width="1900" height="1064" alt="Telecom Pipeline Architecture (1)" src="https://github.com/user-attachments/assets/495cde57-4e73-45cc-9880-59261a8e3eb7" />
+
 
 
 
