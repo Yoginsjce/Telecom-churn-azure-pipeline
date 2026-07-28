@@ -161,7 +161,7 @@ Scheduled daily at 9AM IST via ADF trigger.
 ## 📸 Screenshots
 
 ### ADF Pipeline
-[INSERT ADF SCREENSHOT]
+[Telecom Churn Screenshots/Screenshot 2026-07-27 202317.png]
 
 ### Databricks Tables
 []
