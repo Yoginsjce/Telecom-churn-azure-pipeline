@@ -1,5 +1,5 @@
 # Telecom-churn-azure-pipeline
-End-to-end Azure Data Engineering  pipeline for telecom customer churn detection  using Databricks, ADF, Delta Lake and Power BI
+End-to-end Azure Data Engineering  pipeline for telecom customer churn detection  using Databricks, ADF, Delta Lake, and Power BI
 
 
 # 🚀 Telecom Customer Churn Detection Pipeline
@@ -124,15 +124,15 @@ fact_churn (centre)
 ---
 
 ## 📈 Power BI Dashboard
-
-5 dashboard pages:
+Dashboard pages:
 1. Churn Overview — Risk distribution and KPIs
 2. Customer Analysis — City heatmap and segments
 3. Usage Patterns — Behavioral correlation
 4. Weather Impact — Environmental context
 5. Retention Actions — Prioritized action list
 
-[INSERT DASHBOARD SCREENSHOT]
+<img width="979" height="548" alt="Screenshot 2026-08-01 210035" src="https://github.com/user-attachments/assets/20e18b1f-4fde-4ab4-a3de-84045e06f5d1" />
+
 
 ---
 
@@ -149,7 +149,7 @@ fact_churn (centre)
 
 Pipeline execution order: Bronze (parallel) → Silver (parallel)→ Gold → Star Schema
 
-Scheduled daily at 9AM IST via ADF trigger.
+Scheduled daily at 9 AM IST via ADF trigger.
 
 ---
 
@@ -176,7 +176,8 @@ Scheduled daily at 9AM IST via ADF trigger.
 ]
 
 ### Power BI Dashboard
-[INSERT POWER BI SCREENSHOT]
+<img width="907" height="517" alt="Screenshot 2026-08-01 210403" src="https://github.com/user-attachments/assets/bbaf014a-e91f-4bdc-9906-1e1194bf2491" />
+
 
 ---
 
