@@ -19,7 +19,7 @@ Telecom companies like Airtel and Jio lose crores
 monthly to customer churn. By the time they detect 
 a churned customer, it is already too late to act. 
 This pipeline identifies customers likely to churn 
-BEFORE they leave — giving retention teams a daily 
+BEFORE they leave giving retention teams a daily 
 prioritized action list.
 
 ---
